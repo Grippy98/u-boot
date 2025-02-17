@@ -10,7 +10,6 @@ enum proto_t {
 	TFTPGET
 };
 
-void net_lwip_set_current(void);
 struct netif *net_lwip_new_netif(struct udevice *udev);
 struct netif *net_lwip_new_netif_noip(struct udevice *udev);
 void net_lwip_remove_netif(struct netif *netif);

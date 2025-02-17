@@ -207,8 +207,7 @@ void g_dnl_clear_detach(void)
 static int on_serialno(const char *name, const char *value, enum env_op op,
 		int flags)
 {
-	if (value)
-		g_dnl_set_serialnumber((char *)value);
+	g_dnl_set_serialnumber((char *)value);
 	return 0;
 }
 U_BOOT_ENV_CALLBACK(serialno, on_serialno);

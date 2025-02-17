@@ -22,7 +22,6 @@ Build U-Boot
 
 U-Boot features ability to detect transformer device model on which it is
 loaded. The list of supported devices include:
-
 - ASUS Transformer Prime TF201
 - ASUS Transformer Pad (3G/LTE) TF300T/TG/TL
 - ASUS Transformer Infinity TF700T
@@ -31,7 +30,7 @@ loaded. The list of supported devices include:
 
 .. code-block:: bash
 
-    $ export CROSS_COMPILE=arm-none-eabi-
+    $ export CROSS_COMPILE=arm-linux-gnueabi-
     $ make transformer_t30_defconfig
     $ make
 
@@ -85,18 +84,18 @@ Flashing with the NV3P protocol
 *******************************
 
 Nv3p is a custom Nvidia protocol used to recover bricked devices. Devices can
-enter it by pre-loading vendor bootloader with the Fusée Gelée.
+enter it either by using ``wheelie`` with the correct ``blob.bin`` file or by
+pre-loading vendor bootloader with the Fusée Gelée.
 
 With nv3p, ``repart-block.bin`` is used. It contains BCT and a bootloader in
 encrypted state in form, which can just be written RAW at the start of eMMC.
 
 .. code-block:: bash
 
-    $ ./run_bootloader.sh -s T30 -t ./bct/tf201.bct -b android_bootloader.bin
-    $ ./utiils/nvflash_v1.13.87205 --resume --rawdevicewrite 0 1024 repart-block.bin
+    $ wheelie --blob blob.bin
+    $ nvflash --resume --rawdevicewrite 0 1024 repart-block.bin
 
-When flashing is done, reboot the device. Note that you should adjust bct file
-name according to your device.
+When flashing is done, reboot the device.
 
 Flashing with a pre-loaded U-Boot
 *********************************

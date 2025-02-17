@@ -121,7 +121,7 @@ int do_dns(struct cmd_tbl *cmdtp, int flag, int argc, char *const argv[])
 	if (argc == 3)
 		var = argv[2];
 
-	net_lwip_set_current();
+	eth_set_current();
 
 	return dns_loop(eth_get_dev(), name, var);
 }

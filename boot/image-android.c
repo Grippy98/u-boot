@@ -696,10 +696,7 @@ bool android_image_get_dtb_by_index(ulong hdr_addr, ulong vendor_boot_img,
 	ulong dtb_addr;		/* address of DTB blob with specified index  */
 	u32 i;			/* index iterator */
 
-	if (!android_image_get_dtb_img_addr(hdr_addr, vendor_boot_img,
-					    &dtb_img_addr))
-		return false;
-
+	android_image_get_dtb_img_addr(hdr_addr, vendor_boot_img, &dtb_img_addr);
 	/* Check if DTB area of boot image is in DTBO format */
 	if (android_dt_check_header(dtb_img_addr)) {
 		return android_dt_get_fdt_by_index(dtb_img_addr, index, addr,

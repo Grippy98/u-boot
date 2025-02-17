@@ -47,9 +47,8 @@ static int max77663_bind(struct udevice *dev)
 	int children, ret;
 
 	if (IS_ENABLED(CONFIG_SYSRESET_MAX77663)) {
-		ret = device_bind_driver_to_node(dev, MAX77663_RST_DRIVER,
-						 "sysreset", dev_ofnode(dev),
-						 NULL);
+		ret = device_bind_driver(dev, MAX77663_RST_DRIVER,
+					 "sysreset", NULL);
 		if (ret) {
 			log_err("cannot bind SYSRESET (ret = %d)\n", ret);
 			return ret;
@@ -57,8 +56,8 @@ static int max77663_bind(struct udevice *dev)
 	}
 
 	if (IS_ENABLED(CONFIG_MAX77663_GPIO)) {
-		ret = device_bind_driver_to_node(dev, MAX77663_GPIO_DRIVER,
-						 "gpio", dev_ofnode(dev), NULL);
+		ret = device_bind_driver(dev, MAX77663_GPIO_DRIVER,
+					 "gpio", NULL);
 		if (ret) {
 			log_err("cannot bind GPIOs (ret = %d)\n", ret);
 			return ret;
