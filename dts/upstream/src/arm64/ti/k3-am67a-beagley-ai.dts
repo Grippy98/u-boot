@@ -13,7 +13,7 @@
 #include "k3-j722s.dtsi"
 
 / {
-	compatible = "beagle,am67a-beagley-ai", "ti,j722s";
+	compatible = "beagle,am67a-beagley-ai", "ti,j722s", "ti,j722s-evm";
 	model = "BeagleBoard.org BeagleY-AI";
 
 	aliases {
